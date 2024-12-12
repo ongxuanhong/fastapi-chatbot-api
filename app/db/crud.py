@@ -13,3 +13,20 @@ def create_user(db: Session, user: user_schemas.UserCreate, hashed_password: str
     db.commit()
     db.refresh(db_user)
     return db_user
+
+
+def get_user_balance(db: Session, user_id: int) -> int:
+    """Retrieve the user's current balance."""
+    user = db.query(models.User).filter(models.User.id == user_id).first()
+    return user.balance if user else None
+
+
+def update_user_balance(db: Session, user_id: int, amount: int):
+    """Update the user's balance by adding or deducting an amount."""
+    user = db.query(models.User).filter(models.User.id == user_id).first()
+    if user:
+        user.balance += amount
+        db.commit()
+        db.refresh(user)
+        return user
+    return None

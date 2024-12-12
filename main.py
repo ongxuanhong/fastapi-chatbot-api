@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import user
+from app.routers import user, currency
 from app.db.database import Base, engine
 
 # Initialize database
@@ -9,3 +9,4 @@ app = FastAPI()
 
 # Include routers
 app.include_router(user.router)
+app.include_router(currency.router)
