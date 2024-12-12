@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
+from app.core.auth import get_current_user
 from app.core.auth import hash_password, verify_password, create_access_token
 from app.db import crud
 from app.db.database import get_db
@@ -32,3 +33,20 @@ def login(user: user_schemas.UserLogin, db: Session = Depends(get_db)):
 
     access_token = create_access_token(data={"sub": db_user.username})
     return {"access_token": access_token, "token_type": "bearer"}
+
+
+@router.get("/me")
+def get_user_profile(
+    current_user: dict = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Fetch the profile of the logged-in user."""
+    user = crud.get_user_by_username(db, current_user["username"])
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return {
+        "id": user.id,
+        "username": user.username,
+        "balance": user.balance,
+        "message_count": user.message_count,
+    }

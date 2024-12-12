@@ -8,6 +8,7 @@ class User(Base):
     username = Column(String, unique=True, index=True, nullable=False)
     hashed_password = Column(String, nullable=False)
     balance = Column(Integer, default=100)
+    message_count = Column(Integer, default=0)  # Track the number of messages sent
 
 
 class Pot(Base):

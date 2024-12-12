@@ -54,3 +54,19 @@ def update_pot(db: Session, amount: int):
     db.commit()
     db.refresh(pot)
     return pot
+
+
+def increment_message_count(db: Session, user_id: int):
+    """Increment the message count for a user."""
+    user = db.query(models.User).filter(models.User.id == user_id).first()
+    if user:
+        user.message_count += 1
+        db.commit()
+        db.refresh(user)
+        return user.message_count
+    return None
+
+
+def calculate_message_cost(message_count: int) -> int:
+    """Calculate the cost of the next message based on the user's message count."""
+    return 5 * message_count  # Example: Cost increases by 5 units per message
