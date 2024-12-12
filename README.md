@@ -12,3 +12,11 @@ Deployed Railway: https://web-production-65db.up.railway.app/docs
 ```bash
 pytest tests/
 ```
+
+## How to migration
+```bash
+alembic init alembic
+alembic init migrations
+alembic revision --autogenerate -m "Initial migration"
+alembic upgrade head
+```
