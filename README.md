@@ -198,6 +198,7 @@ uvicorn uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
 Deployed Railway: https://web-production-65db.up.railway.app/docs
+Deployed Huggingface: https://huggingface.co/spaces/ongxuanhong/gamified-chat-application
 
 ## How to test
 ```bash
