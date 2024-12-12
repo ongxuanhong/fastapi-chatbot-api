@@ -1,0 +1,21 @@
+@startuml
+actor User
+participant "Streamlit UI" as UI
+participant "FastAPI Backend" as API
+database "Database" as DB
+
+User -> UI: Click "Send Message"
+UI -> API: POST /messages/send
+API -> DB: Increment Message Count
+API -> DB: Deduct Currency
+API -> DB: Add to Pot
+API -> DB: Check Randomized Win Logic
+alt User Wins
+    API -> DB: Transfer Pot to User Balance
+    API -> DB: Reset Pot to 0
+    API -> UI: Return "You Won!"
+else User Loses
+    API -> UI: Return "Better Luck Next Time"
+end
+UI -> User: Show Result
+@enduml

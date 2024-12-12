@@ -1,0 +1,34 @@
+@startuml
+skinparam componentStyle rectangle
+
+package "Gamified Chat Application" {
+    [Streamlit UI] -down-> [FastAPI Backend]
+    [FastAPI Backend] -down-> [Database]
+}
+
+package "Backend Components" {
+    component "Authentication Service" {
+        [Register]
+        [Login]
+        [JWT Token Management]
+    }
+    component "Currency Management" {
+        [Balance Tracking]
+        [Currency Deduction]
+    }
+    component "Messaging Service" {
+        [Dynamic Pricing]
+        [Randomized Win Logic]
+    }
+    component "Pot Management" {
+        [Pot Contribution]
+        [Pot Reset]
+    }
+}
+
+[FastAPI Backend] --> "Authentication Service"
+[FastAPI Backend] --> "Currency Management"
+[FastAPI Backend] --> "Messaging Service"
+[FastAPI Backend] --> "Pot Management"
+
+@enduml

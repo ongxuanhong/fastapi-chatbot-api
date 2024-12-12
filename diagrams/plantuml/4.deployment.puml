@@ -1,0 +1,13 @@
+@startuml
+node "User Device" {
+    [Streamlit UI]
+}
+
+node "Server" {
+    [FastAPI Backend]
+    database "Database" as DB
+}
+
+[Streamlit UI] --> [FastAPI Backend]
+[FastAPI Backend] --> DB
+@enduml

@@ -20,3 +20,8 @@ alembic init migrations
 alembic revision --autogenerate -m "Initial migration"
 alembic upgrade head
 ```
+
+## How to generate diagram
+```bash
+java -jar plantuml-1.2024.8.jar 1.components.puml
+```

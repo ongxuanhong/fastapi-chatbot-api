@@ -1,0 +1,18 @@
+@startuml
+entity "users" as U {
+    * id : INTEGER <<PK>>
+    --
+    username : STRING <<UNIQUE>>
+    hashed_password : STRING
+    balance : INTEGER
+    message_count : INTEGER
+}
+
+entity "pot" as P {
+    * id : INTEGER <<PK>>
+    --
+    amount : INTEGER
+}
+
+U }o--|| P : contributes to
+@enduml
