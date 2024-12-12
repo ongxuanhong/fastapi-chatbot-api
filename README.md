@@ -1,6 +1,124 @@
 # Gamified Chat Application
 
-## Table of Contents
+A gamified chat application where users interact with a chatbot. Users send messages with dynamic pricing, contribute to a centralized pot, and have a randomized chance to win the pot. 
+This project is designed with a modular architecture, employing **FastAPI** for the backend, **Streamlit** for the frontend, and a relational database for persistence.
+
+## Project overview (TOC)
+1. [Overview](#overview)
+2. [Folder Structure](#folder-structure)
+3. [Tech Stack](#tech-stack)
+4. [Streamlit UI User Guide](#streamlit-ui-user-guide)
+
+## Overview
+
+### Features
+- **Authentication**: Users can register and log in using JWT-based authentication.
+- **Dynamic Pricing**: The cost of sending messages increases incrementally based on the user's message count.
+- **Pot System**: Contributions are added to a centralized pot with a randomized chance of winning.
+- **Streamlit UI**: A user-friendly frontend for interacting with the system.
+- **Database Schema**: Relational database design with tables for users and the pot.
+
+### Use Cases
+- Gamified interactions for entertainment or education.
+- Demonstrates a modular approach to designing interactive web applications.
+- Provides a template for building backend-driven applications with dynamic logic.
+
+---
+
+## Folder Structure
+
+### Project Root
+The root directory contains essential configuration files, documentation, and scripts for running and deploying the project.
+
+```plaintext
+.
+├── Procfile                   # Specifies commands for deployment platforms (e.g., Heroku).
+├── README.md                  # Project documentation with an overview, usage, and architecture details.
+├── alembic.ini                # Alembic configuration file for managing database migrations.
+├── docker-compose.yaml        # Docker Compose file for containerizing the application.
+├── requirements.txt           # Python dependencies for the project.
+├── main.py                    # Entry point for the FastAPI backend.
+```
+
+### Backend (Core Application Code)
+The `app/` directory contains the core backend logic for the application.
+
+```plaintext
+├── app
+│   ├── __init__.py            # Makes `app` a package.
+│   ├── config.py              # Configuration settings (e.g., database URL, secret keys).
+│   ├── core                   # Core utilities and helper modules.
+│   │   ├── __init__.py
+│   │   └── auth.py            # Authentication logic, including password hashing and JWT handling.
+│   ├── db                     # Database-related code.
+│   │   ├── __init__.py
+│   │   ├── crud.py            # CRUD operations for database interactions.
+│   │   ├── database.py        # SQLAlchemy engine and session management.
+│   │   └── models.py          # SQLAlchemy models defining database schema.
+│   ├── routers                # API route handlers.
+│   │   ├── __init__.py
+│   │   ├── currency.py        # Endpoints for managing user currency.
+│   │   ├── messaging.py       # Endpoints for message sending with dynamic pricing.
+│   │   ├── pot.py             # Endpoints for pot management (contributions and resets).
+│   │   └── user.py            # Endpoints for user registration, login, and profile.
+│   └── schemas                # Pydantic schemas for request and response validation.
+│       ├── __init__.py
+│       └── user.py            # User-related schemas (e.g., login, registration).
+
+```
+
+### Frontend
+The `frontend/` directory contains the Streamlit-based user interface for interacting with the application.
+    
+```plaintext
+├── frontend
+│   └── app.py                 # Streamlit UI for user registration, login, balance, pot, and messaging.
+```    
+
+### Tests
+The `tests/` folder contains unit and integration tests for various application components.
+```plaintext
+├── tests
+│   ├── __init__.py            # Makes `tests` a package.
+│   ├── test_currency_endpoints.py   # Tests for currency management endpoints.
+│   ├── test_messaging_endpoints.py  # Tests for messaging service endpoints.
+│   ├── test_pot_endpoints.py        # Tests for pot management endpoints.
+│   ├── test_user_endpoints.py       # Tests for user registration and login endpoints.
+```
+
+### Deployment
+* Procfile: Deployment instructions, often used for platforms like Heroku.
+* docker-compose.yaml: Defines services, networks, and volumes for running the application in containers.
+
+## Tech Stack
+
+### Backend
+* FastAPI: High-performance Python framework for building APIs.
+* SQLAlchemy: ORM for database interactions.
+* Alembic: Database migration tool.
+* Cockroach DB: Relational database for data persistence.
+
+### Frontend
+* Streamlit: Simple and interactive UI framework for Python.
+
+### Tools
+* PlantUML: For generating architecture diagrams.
+* Pytest: For testing API endpoints and database operations.
+* JWT: For authentication and authorization.
+
+### Cloud services
+* Railway: For deploying the application to the cloud.
+* Vercel: For hosting the Streamlit frontend.
+
+## Streamlit UI User Guide
+
+1. **Register or Login:** Navigate to the sidebar and choose between registering a new account or logging in with an existing one.
+2. **View Balance and Pot:** Once logged in, view your current balance and the amount in the centralized pot.
+3. **Send a Message:** Click "Send Message" to contribute to the pot and see if you win.
+4. **Logout:** Click "Logout" to end your session.
+
+
+## Architecture (TOC)
 1. [Component Diagram](#component-diagram)
 2. [Sequence Diagram](#sequence-diagram)
 3. [Entity-Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
