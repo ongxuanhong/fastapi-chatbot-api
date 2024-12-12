@@ -30,3 +30,27 @@ def update_user_balance(db: Session, user_id: int, amount: int):
         db.refresh(user)
         return user
     return None
+
+
+def get_pot(db: Session) -> int:
+    """Retrieve the current pot amount."""
+    pot = db.query(models.Pot).first()
+    if not pot:
+        pot = models.Pot(amount=0)
+        db.add(pot)
+        db.commit()
+        db.refresh(pot)
+    return pot.amount
+
+
+def update_pot(db: Session, amount: int):
+    """Add to the pot or reset it."""
+    pot = db.query(models.Pot).first()
+    if not pot:
+        pot = models.Pot(amount=amount)
+        db.add(pot)
+    else:
+        pot.amount = amount
+    db.commit()
+    db.refresh(pot)
+    return pot
