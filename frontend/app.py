@@ -88,4 +88,4 @@ if st.session_state.token:
     if st.button("Logout"):
         st.session_state.token = None
         st.session_state.username = None
-        st.experimental_rerun()
+        st.rerun()
