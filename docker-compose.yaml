@@ -23,7 +23,7 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgres://admin:admin@db:5432/public
+      DATABASE_URL: postgresql://admin:admin@db:5432/public
     ports:
       - "8000:8000"
 

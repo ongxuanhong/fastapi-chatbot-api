@@ -8,10 +8,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY app ./application
-COPY alembic.ini .
-COPY migrations ./migrations
-COPY main.py .
+COPY . .
 
 # Expose the port for FastAPI
 EXPOSE 8000
