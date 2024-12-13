@@ -111,6 +111,7 @@ The `tests/` folder contains unit and integration tests for various application 
 * Vercel: For hosting the Streamlit frontend.
 
 ## Streamlit UI User Guide
+![Streamlit UI](diagrams/figures/frontend_ui.png)
 
 1. **Register or Login:** Navigate to the sidebar and choose between registering a new account or logging in with an existing one.
 2. **View Balance and Pot:** Once logged in, view your current balance and the amount in the centralized pot.
